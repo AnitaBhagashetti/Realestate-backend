@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const User = require('./user')
+const basicinfo = require('./basic-info')
 
 const GeneralInfoSchema = new mongoose.Schema({
     Name: { type: String },
@@ -9,7 +10,9 @@ const GeneralInfoSchema = new mongoose.Schema({
     Featuredpackage: { type: String },
     PPDPackage: { type: String },
     Image: { type: String },
-    user: { type: mongoose.Types.ObjectId, ref: User }
+    user: { type: mongoose.Types.ObjectId, ref: User },
+    PPDID:{type: mongoose.Types.ObjectId, ref:basicinfo}
+
 })
 
 module.exports = mongoose.model('GeneralInfo', GeneralInfoSchema)

@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 
 const User = require('./user')
+const basicinfo = require('./basic-info')
 
 const PropertdetailsSchema = new mongoose.Schema({
     length: { type: Number },
@@ -15,6 +16,8 @@ const PropertdetailsSchema = new mongoose.Schema({
     Lift: { type: Number, required: true },
     Electricity: { type: String },
     Facing: { type: String },
+    PPDID:{type: mongoose.Types.ObjectId, ref:basicinfo}
+
 })
 
 

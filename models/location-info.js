@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const User = require('./user')
+const basicinfo = require('./basic-info')
 
 const LocationInfoSchema = new mongoose.Schema({
     Email: { type: String, },
@@ -10,7 +11,9 @@ const LocationInfoSchema = new mongoose.Schema({
     Landmark: { type: String },
     Latitude: { type: String },
     Longitude: { type: String },
-    user: { type: mongoose.Types.ObjectId, ref: User }
+    user: { type: mongoose.Types.ObjectId, ref: User },
+    PPDID:{type: mongoose.Types.ObjectId, ref:basicinfo}
+
 
 })
 
