@@ -3,6 +3,7 @@ const app = express()
 const connectDB = require('./db/connect')
 const userRoutes = require('./routes/user')
 require('dotenv').config()
+const cors = require('cors')
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -10,7 +11,7 @@ app.use(bodyParser.json());
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
-
+app.use(cors())
 const port = process.env.PORT || 5000
 
 app.use(userRoutes);
