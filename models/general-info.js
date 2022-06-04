@@ -4,7 +4,7 @@ const basicinfo = require('./basic-info')
 
 const GeneralInfoSchema = new mongoose.Schema({
     Name: { type: String },
-    Mobile: { type: Number },
+    Mobile: { type: String},
     Postedby: { type: String },
     SelectType: { type: String },
     Featuredpackage: { type: String },
