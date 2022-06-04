@@ -3,13 +3,13 @@ const User = require('./user')
 
 const BasicInfo = new mongoose.Schema({
     propertyType: { type: String },
-    Negotable: { type: Boolean, default: false },
-    Price: { type: Number, required: true },
+    Negotable: { type: String },
+    Price: { type: String },
     OwnerShip: { type: String },
-    PropertyAge: { type: Number, required: true },
+    PropertyAge: { type:String },
     PropertyApproved: { type: String },
     Propertydescription: { type: String, },
-    BankLoan: { type: Boolean },
+    BankLoan: { type: String },
     user: { type: mongoose.Types.ObjectId, ref: User }
 })
 

@@ -4,16 +4,17 @@ const User = require('./user')
 const basicinfo = require('./basic-info')
 
 const PropertdetailsSchema = new mongoose.Schema({
-    length: { type: Number },
-    Breadth: { type: Number },
+    length: { type: String },
+    Breadth: { type: String  },
+    TotalArea:{type: String },
     AreaUnit: { type: String },
-    NoofBHK: { type: Number },
-    NoofFloor: { type: Number },
+    NoofBHK: { type: String  },
+    NoofFloor: { type: String  },
     Attached: { type: String },
-    WesternToilet: { type: Boolean },
-    Furnished: { type: Boolean },
-    CarParking: { type: Boolean },
-    Lift: { type: Number, required: true },
+    WesternToilet: { type: String },
+    Furnished: { type: String },
+    CarParking: { type: String  },
+    Lift: { type: String },
     Electricity: { type: String },
     Facing: { type: String },
     PPDID:{type: mongoose.Types.ObjectId, ref:basicinfo}

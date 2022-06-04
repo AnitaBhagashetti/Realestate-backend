@@ -7,5 +7,8 @@ router.route("/register").post(signup);
 router.route("/login").post(signin)
 
 router.route('/props').get(getAlldata).post(createProperty)
+// router.route('/userData',(res,req)=>{
+//     console.log(req.body)
+// })
 
 module.exports = router;

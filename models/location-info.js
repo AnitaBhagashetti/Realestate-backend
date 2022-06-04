@@ -6,7 +6,7 @@ const LocationInfoSchema = new mongoose.Schema({
     Email: { type: String, },
     City: { type: String },
     Area: { type: String },
-    Pincode: { type: Number },
+    Pincode: { type: String },
     Adresss: { type: String },
     Landmark: { type: String },
     Latitude: { type: String },
