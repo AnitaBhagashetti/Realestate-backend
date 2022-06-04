@@ -9,7 +9,9 @@ const saltRounds = 10;
 
 exports.signup = async(req, res) => {
     try {
+        // console.log(req.body)
         const { userId, password } = req.body;
+
         const exists = await User.findOne({ userId });
         if (exists !== null) {
             return res.send({ message: "User already exist" });
@@ -37,26 +39,27 @@ exports.signup = async(req, res) => {
 exports.signin = async(req, res) => {
     try {
         const { userId, password } = req.body;
+        console.log(req.body)
         const user = await User.findOne({ userId: userId });
         if (!user) {
-            res.json({ message: "No user exist" })
+            res.send({ message: "No user exist" })
         } else {
             bcrypt.compare(password, user.password, function(err, result) {
                 if (err) {
                     console.log(err)
-                    res.json({ status: "Failed" })
+                    res.send({ status: "Failed" })
                 }
                 if (result) {
                     const token = jwt.sign({
                         exp: Math.floor(Date.now() / 1000) + (60 * 60),
                         _id: user._id
                     }, process.env.JWT_SECRET);
-                    res.json({
+                    res.send({
                         "status": "Success",
                         token
                     })
                 } else {
-                    res.json({
+                    res.send({
                         "status": "Failed",
                         "message": "Invalid Credentials"
                     })
