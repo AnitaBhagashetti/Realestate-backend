@@ -1,5 +1,5 @@
 
-const Info = require('../models/info')
+const Info = require('../models/basic-info')
 
 
 const getAlldata =async(req,res)=>{
