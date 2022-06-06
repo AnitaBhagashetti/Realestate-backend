@@ -10,15 +10,15 @@ const InfoSchema = mongoose.Schema({
         type: String,
         required: true
         },
-    property: {
+    propertyType: {
         type: String,
         required: true
         },
-    contact: {
+    Mobile: {
         type: Number,
         required: true
         },
-    area: {
+    TotalArea: {
         type: Number,
         required: true
         },

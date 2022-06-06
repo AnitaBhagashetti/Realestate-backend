@@ -6,8 +6,7 @@ const BasicInfo = new mongoose.Schema({
     TotalArea: { type: String },
     Mobile: { type: String },
     PPDID: { type:String },
-    user: { type: mongoose.Types.ObjectId, ref: User }
+    // user: {type:mongoose.Types.ObjectId, ref:User}
 })
-
 
 module.exports = mongoose.model('BasicInfo', BasicInfo)

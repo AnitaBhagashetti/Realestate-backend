@@ -6,9 +6,9 @@ const saltRounds = 10;
 // 404- Not Found
 // 400 - Error
 // 500 - Network Error
-
 exports.signup = async(req, res) => {
     try {
+        // console.log(req.body)
         const { userId, password } = req.body;
         const exists = await User.findOne({ userId });
         if (exists !== null) {
@@ -24,7 +24,7 @@ exports.signup = async(req, res) => {
                     password: hash
                 });
                 res.json({
-                    status: "Success",
+                    message: "Success",
                     data
                 })
             });
@@ -33,13 +33,14 @@ exports.signup = async(req, res) => {
         res.status(400 || 500).send(error || "internal error")
     }
 }
-
 exports.signin = async(req, res) => {
     try {
         const { userId, password } = req.body;
+        console.log(req.body)
         const user = await User.findOne({ userId: userId });
+        console.log(user)
         if (!user) {
-            res.json({ message: "No user exist" })
+            res.json({ status: "No user exist please signup" })
         } else {
             bcrypt.compare(password, user.password, function(err, result) {
                 if (err) {
@@ -51,14 +52,15 @@ exports.signin = async(req, res) => {
                         exp: Math.floor(Date.now() / 1000) + (60 * 60),
                         _id: user._id
                     }, process.env.JWT_SECRET);
+                    console.log(token)
                     res.json({
                         "status": "Success",
+                        user ,
                         token
                     })
                 } else {
-                    res.json({
-                        "status": "Failed",
-                        "message": "Invalid Credentials"
+                    res.send({
+                        "status": "Invalid Credentials"
                     })
                 }
             })
@@ -67,3 +69,4 @@ exports.signin = async(req, res) => {
         res.status(400 || 500).send(error || "internal error")
     }
 }
+

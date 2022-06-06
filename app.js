@@ -6,6 +6,8 @@ require('dotenv').config()
 const bodyParser = require('body-parser');
 const cors = require("cors");
 app.use(cors({ origin: "*" }));
+const authjwt = require('./middlewares/authJWT')
+
 ///////////schemas/////////////////
 const Basicinfo_db = require('./models/basic-info')
 const propertydetails_db = require('./models/property-detail')
@@ -39,10 +41,8 @@ app.use(bodyParser.urlencoded({ extended:true }));
 
 app.use(express.json())
 // app.use(express.urlencoded({ extended: true }));
-app.post("/userData",async(req,res)=>{
-        const date = new Date()
-        const PPDID ="PPDID" +date.getSeconds()+date.getHours() +date.getDay()
-        console.log(PPDID)
+app.post("/userData",authjwt,async(req,res)=>{
+        
         
         console.log("these from Userdata")
         console.log(req.body);
