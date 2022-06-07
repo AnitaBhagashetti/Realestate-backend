@@ -3,6 +3,7 @@ const app = express()
 const connectDB = require('./db/connect')
 const userRoutes = require('./routes/user')
 require('dotenv').config()
+const cors = require('cors')
 const bodyParser = require('body-parser');
 const cors = require("cors");
 app.use(cors({ origin: "*" }));
@@ -83,6 +84,7 @@ app.post("/userData",authjwt,async(req,res)=>{
     
     //res.end()
 })
+
 // app.post("/Generalinfo",upload.single("Image"),(req,res)=>{
 //     res.send("Hello")
 //     console.log("This from Generalinfo")
@@ -90,6 +92,11 @@ app.post("/userData",authjwt,async(req,res)=>{
 //     console.log(req.file.filename)
 //     res.end()
 // })
+
+app.use(express.urlencoded({ extended: true }));
+app.use(cors())
+
+
 const port = process.env.PORT || 5000
 
 app.use(userRoutes);

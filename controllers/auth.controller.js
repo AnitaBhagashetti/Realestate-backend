@@ -10,6 +10,7 @@ exports.signup = async(req, res) => {
     try {
         // console.log(req.body)
         const { userId, password } = req.body;
+
         const exists = await User.findOne({ userId });
         if (exists !== null) {
             return res.send({ message: "User already exist" });
@@ -40,27 +41,40 @@ exports.signin = async(req, res) => {
         const user = await User.findOne({ userId: userId });
         console.log(user)
         if (!user) {
+
             res.json({ status: "No user exist please signup" })
+
+            res.send({ message: "No user exist" })
+
         } else {
             bcrypt.compare(password, user.password, function(err, result) {
                 if (err) {
                     console.log(err)
-                    res.json({ status: "Failed" })
+                    res.send({ status: "Failed" })
                 }
                 if (result) {
                     const token = jwt.sign({
                         exp: Math.floor(Date.now() / 1000) + (60 * 60),
                         _id: user._id
                     }, process.env.JWT_SECRET);
+
                     console.log(token)
                     res.json({
+
+                    res.send({
+
                         "status": "Success",
                         user ,
                         token
                     })
                 } else {
                     res.send({
+
                         "status": "Invalid Credentials"
+
+                        "status": "Failed",
+                        "message": "Invalid Credentials"
+
                     })
                 }
             })
